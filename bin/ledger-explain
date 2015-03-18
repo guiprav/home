@@ -1,0 +1,109 @@
+#!/usr/bin/node
+var yaml = require('js-yaml');
+var pockets = {};
+var event_handler;
+var reader;
+var only_balances = (function() {
+	var balance_option_index = process.argv.indexOf('-b');
+	if(balance_option_index !== -1) {
+		process.argv.splice(balance_option_index, 1);
+		return true;
+	}
+	else {
+		return false;
+	}
+})();
+reader = new (
+	require('line-by-line')
+) (
+	process.argv[2]
+	|| (
+		process.env.HOME + '/.ledger'
+	)
+);
+reader.on (
+	'error', function(message) {
+		console.error(message);
+		process.exit(-1);
+	}
+);
+reader.on (
+	'line', function(line) {
+		var entry = JSON.parse(line);
+		event_handler[entry.event].call(null, entry);
+		pockets.net = (function() {
+			var net = 0;
+			for(var key in pockets) {
+				if(key === 'net') {
+					continue;
+				}
+				net += pockets[key];
+			}
+			return net;
+		})();
+		if(!only_balances) {
+			console.log(">>> Net balance so far:", pockets.net + ".");
+			console.log('---');
+		}
+	}
+);
+reader.on (
+	'end', function() {
+		var net = pockets.net;
+		delete pockets.net;
+		console.log(yaml.safeDump(pockets));
+		console.log(">>> Net balance so far:", net + ".");
+	}
+);
+event_handler = {};
+event_handler.set = function(entry) {
+	entry.on = entry.on || 'main';
+	entry.value = parseFloat(entry.value);
+	if(!only_balances) {
+		console.log(yaml.safeDump(entry));
+		console.log(">>> " + entry.on + " set to " + entry.value + ".");
+		if(pockets[entry.on] && pockets[entry.on] !== entry.value) {
+			console.log(">>> " + entry.on + " has skewed " + (entry.value - pockets[entry.on]) + ".");
+		}
+	}
+	pockets[entry.on] = entry.value;
+};
+event_handler.out = function(entry) {
+	entry.on = entry.on || 'main';
+	entry.value = parseFloat(entry.value);
+	if(!only_balances) {
+		console.log(yaml.safeDump(entry));
+		console.log(">>> " + entry.on + " lost " + entry.value + ".");
+	}
+	pockets[entry.on] = (pockets[entry.on] || 0) - entry.value;
+	if(!only_balances) {
+		console.log(">>> Now has", pockets[entry.on] + ".");
+	}
+};
+event_handler.in = function(entry) {
+	entry.on = entry.on || 'main';
+	entry.value = parseFloat(entry.value);
+	if(!only_balances) {
+		console.log(yaml.safeDump(entry));
+		console.log(">>> " + entry.on + " got " + entry.value + ".");
+	}
+	pockets[entry.on] = (pockets[entry.on] || 0) + entry.value;
+	if(!only_balances) {
+		console.log(">>> Now has", pockets[entry.on] + ".");
+	}
+};
+event_handler.move = function(entry) {
+	entry.from = entry.from || 'main';
+	entry.to = entry.to || 'main';
+	entry.value = parseFloat(entry.value);
+	if(!only_balances) {
+		console.log(yaml.safeDump(entry));
+		console.log(">>>", entry.value, "moved from", entry.from, "to", entry.to + ".");
+	}
+	pockets[entry.from] = (pockets[entry.from] || 0) - entry.value;
+	pockets[entry.to] = (pockets[entry.to] || 0) + entry.value;
+	if(!only_balances) {
+		console.log(">>>", entry.from, "now has", pockets[entry.from] + ".");
+		console.log(">>>", entry.to, "now has", pockets[entry.to] + ".");
+	}
+};

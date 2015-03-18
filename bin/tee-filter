@@ -1,0 +1,4 @@
+#!/bin/bash
+FILE=$1; shift
+FILTER=$1; shift
+tee >(sh -c "$FILTER" >"$FILE")

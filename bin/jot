@@ -1,0 +1,5 @@
+#!/bin/sh
+echo '0a
+* '$*'
+.
+w' | ed -s ~/.todo/`cat ~/.todo-ctx`.md && hmm...

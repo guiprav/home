@@ -1,0 +1,8 @@
+#!/bin/bash
+FILES=""
+while [[ $# > 0 ]];
+do
+	FILES="$FILES $HOME/.grabbed_outputs/$1"
+	shift
+done
+rm $FILES

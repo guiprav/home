@@ -1,0 +1,3 @@
+#!/bin/sh
+cat ~/.todo-ctx
+cat ~/.todo/`cat ~/.todo-ctx`.md | marked | elinks -dump -dump-color-mode 4

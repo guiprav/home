@@ -1,0 +1,3 @@
+#!/bin/sh
+NAME=$1; shift
+nearest "script/$NAME" -e "$@"

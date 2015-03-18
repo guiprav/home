@@ -1,0 +1,2 @@
+#!/bin/sh
+ls ~/.todo | sed -e s/\.md// -e s/^/\*\ / -e "s/`cat ~/.todo-ctx`/\*&\*/" | marked | elinks -dump -dump-color-mode 4

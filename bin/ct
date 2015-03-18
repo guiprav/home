@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ -z $1 ]
+then
+	cat ~/.todo-ctx
+else
+	echo $1 > ~/.todo-ctx
+fi
+cat ~/.todo/`cat ~/.todo-ctx`.md | marked | elinks -dump -dump-color-mode 4
