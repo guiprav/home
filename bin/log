@@ -8,7 +8,8 @@ elif [ "$1" = "-e" ];
 then
 	$EDITOR "$LOG_PATH"
 else
-	parse-log-command "$@" >>"$LOG_PATH"
+	WHEN=$(date --date="$1" +%s); shift
+	parse-log-command "$WHEN" "$@" >>"$LOG_PATH"
 	sort "$LOG_PATH" -o "$LOG_PATH"
 	tail "$LOG_PATH"
 fi

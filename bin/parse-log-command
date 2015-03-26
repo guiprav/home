@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 var moment = require('moment');
-var die = require('../lib/die');
-var strtotime = require('../lib/strtotime');
 var log_file_path = process.env.HOME + '/.log';
 var args = process.argv.slice(2);
-var date_time_label =
-	moment.unix(strtotime(args.shift()) || die("Invalid time expression.")).format("YYYY-MM-DD hh:mm:ss:")
-;
+var date_time_label = moment.unix(args.shift()).format("YYYY-MM-DD HH:mm:ss:");
 var event = {};
 var parsers;
 event.positionals = [];
