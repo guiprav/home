@@ -1,0 +1,13 @@
+{
+  "name": "home",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n2liquid/home.git"
+  },
+  "author": "Guilherme Prá Vieira (super.driver.512@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n2liquid/home/issues"
+  },
+  "homepage": "https://github.com/n2liquid/home"
+}
