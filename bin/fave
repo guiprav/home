@@ -2,10 +2,10 @@
 FAVES_PATH=$HOME/.faves
 if [ -z "$1" ];
 then
-    cat "$FAVES_PATH"
-elif [ "$1" = "-e" ];
-then
     $EDITOR "$FAVES_PATH"
+elif [ "$1" = "-p" ];
+then
+    cat "$FAVES_PATH"
 else
     realpath "$1" >>$FAVES_PATH
 fi
