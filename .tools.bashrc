@@ -15,7 +15,7 @@ alias cless="less -R"
 alias pandora="ssh 50.56.218.106"
 export EDITOR=vim
 export PATH="$HOME/bin:$PATH"
-function rrd() {
+function rd() {
 	cd $(recycle $1)
 }
 function mkcd() {
