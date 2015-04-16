@@ -12,6 +12,14 @@ let g:rehash256 = 1
 colorscheme molokai
 nnoremap -d "_d
 vnoremap -d "_d
+nnoremap -cc I//<Esc>
+nnoremap -CC V:s@^//@<CR>
+vnoremap -cc :norm!I//<CR>
+vnoremap -CC :s@^//@<CR>
+nnoremap -c# I#<Esc>
+nnoremap -C# V:s@^\#@<CR>
+vnoremap -c# :norm!I#<CR>
+vnoremap -C# :s@^#@<CR>
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 noremap <C-j> <C-e>
