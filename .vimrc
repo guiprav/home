@@ -13,13 +13,13 @@ colorscheme molokai
 nnoremap -d "_d
 vnoremap -d "_d
 nnoremap -cc I//<Esc>
-nnoremap -CC V:s@^//@<CR>
+nnoremap -CC ^2lF/F/2x
 vnoremap -cc :norm!I//<CR>
-vnoremap -CC :s@^//@<CR>
+vnoremap -CC :norm!^2lF/F/2x<CR>
 nnoremap -c# I#<Esc>
-nnoremap -C# V:s@^\#@<CR>
+nnoremap -C# ^lF#x
 vnoremap -c# :norm!I#<CR>
-vnoremap -C# :s@^#@<CR>
+vnoremap -C# :norm!^lF#x<CR>
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 noremap <C-j> <C-e>
