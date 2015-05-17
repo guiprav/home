@@ -1,13 +1,3 @@
 #!/bin/sh
-ID=$1
-if [ -z "$ID" ];
-then
-	ID="_"
-fi
-FILE="$HOME/.grabbed_outputs/$ID"
-if [ ! -f "$FILE" ];
-then
-	echo "$FILE does not exist." > /dev/stderr
-	exit 1
-fi
+FILE=$(recycle-resolve $1)
 cat "$FILE"

@@ -1,0 +1,13 @@
+#!/bin/sh
+ID=$1
+if [ -z "$ID" ];
+then
+	ID="_"
+fi
+FILE="$HOME/.grabbed_outputs/$ID"
+if [ ! -f "$FILE" ];
+then
+	echo "$FILE does not exist." >&2
+	exit 1
+fi
+echo "$FILE"
