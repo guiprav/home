@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+in=~/.vimsedin
+out=~/.vimsedout
+cmd=~/.vimsedcmd.vim
+
+for file in "$in" "$out" "$cmd"
+do
+	touch $file
+	chmod 600 $file
+done
+
+normal=$(echo "gg0$1")
+command="normal $normal\nwrite! $out\nquit!"
+
+cat > $in \
+    && echo -e $command > $cmd \
+    && vim -e -s -c "so $cmd" $in \
+    && cat $out \
+    && rm $in $out $cmd
