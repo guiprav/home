@@ -1,0 +1,22 @@
+#!/bin/bash
+# created by black @ LET
+# MIT license, please give credit if you use this for your own projects
+set -e
+key=$(cat ~/.mandrill.key)
+from_name="$(whoami)@$(hostname)"
+from_email="$from_name.io"
+reply_to="super.driver.512@gmail.com"
+if [ $# -eq 3 ]; then
+	msg='{ "async": false, "key": "'$key'", "message": { "from_email": "'$from_email'", "from_name": "'$from_name'", "headers": { "Reply-To": "'$reply_to'" }, "return_path_domain": null, "subject": "'$2'", "text": "'$3'", "to": [ { "email": "'$1'", "type": "to" } ] } }'
+	results=$(curl -A 'Mandrill-Curl/1.0' -d "$msg" 'https://mandrillapp.com/api/1.0/messages/send.json' -s 2>&1);
+	echo "$results" | grep "sent" -q;
+	if [ $? -ne 0 ]; then
+		echo "An error occured: $results";
+		exit 2;
+	fi
+else
+	echo "Error: Bad arguments." 1>&2
+	echo "Usage: sendmail [MAIL TO] [SUBJECT] [MAIL BODY]";
+	exit 1;
+fi
+
