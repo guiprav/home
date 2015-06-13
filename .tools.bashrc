@@ -16,7 +16,6 @@ alias lsgg="list-grabbed"
 alias rmgg="rm-grabbed"
 alias ack="ack --color"
 alias cless="less -R"
-alias pandora="ssh 50.56.218.106"
 export EDITOR=vim
 export PATH="$HOME/bin:$PATH"
 function rd() {

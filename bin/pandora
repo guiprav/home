@@ -1,0 +1,7 @@
+#!/bin/sh
+COMMAND="$@"
+if [ -n "$COMMAND" ];
+then
+	COMMAND="source ~/.bash_profile; $COMMAND"
+fi
+ssh n2liquid@50.56.218.106 "$COMMAND"
