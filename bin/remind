@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+TIME=$(date --date "$1" "+%H:%M %m%d%Y"); shift
+SUBJECT="$@"
+echo sendmail super.driver.512@gmail.com "$SUBJECT" "$SUBJECT" |at "$TIME"
