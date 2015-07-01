@@ -16,6 +16,7 @@ alias lsgg="list-grabbed"
 alias rmgg="rm-grabbed"
 alias ack="ack --color"
 alias cless="less -R"
+alias annex="git annex"
 export EDITOR=vim
 function rd() {
 	cd $(recycle $1)
