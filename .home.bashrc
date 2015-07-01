@@ -1,4 +1,4 @@
-alias reload="source ~/.bashrc"
+alias reload="source ~/.bash_profile"
 alias ls="ls -h --color=always"
 alias ll="ls -l"
 alias la="ls -la"
