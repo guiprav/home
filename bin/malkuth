@@ -4,4 +4,4 @@ if [ -n "$COMMAND" ];
 then
 	COMMAND="source ~/.bash_profile; $COMMAND"
 fi
-ssh n2liquid@50.56.218.106 "$COMMAND"
+ssh n2liquid@malkuth.n2.gs "$COMMAND"
