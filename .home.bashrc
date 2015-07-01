@@ -17,7 +17,6 @@ alias rmgg="rm-grabbed"
 alias ack="ack --color"
 alias cless="less -R"
 export EDITOR=vim
-export PATH="$HOME/bin:$PATH"
 function rd() {
 	cd $(recycle $1)
 }
