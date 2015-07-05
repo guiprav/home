@@ -1,0 +1,2 @@
+#!/bin/sh
+vim "$HOME/.todo/$(cat ~/.todo-ctx).md"
