@@ -1,0 +1,14 @@
+#!/bin/sh
+ID=$1
+if [ -z "$ID" ];
+then
+	ID="_"
+fi
+FILE="$HOME/.grabbed_outputs/$ID"
+TMP="$HOME/.grabbed_outputs/.$$"
+if [ -f "$FILE" ];
+then
+	cp "$FILE" "$TMP"
+fi
+tee -a "$TMP" < /dev/stdin
+mv "$TMP" "$FILE"
