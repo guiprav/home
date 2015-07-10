@@ -1,0 +1,27 @@
+#!/bin/sh
+TARGET="selected-files"
+if [ "$1" = "-b" ];
+then
+	TARGET="buffer"
+	shift
+elif [ "$1" = "-a" ];
+then
+	TARGET="all-files"
+	shift
+fi
+FAVE_CONTEXT="$2"
+if [ -z "$FAVE_CONTEXT" ];
+then
+	FAVE_CONTEXT="_"
+fi
+BUFFER_NAME="fave-$FAVE_CONTEXT"
+if [ "$TARGET" = "selected-files" ];
+then
+	recycle-find-and-edit-files "$BUFFER_NAME"
+elif [ "$TARGET" = "all-files" ];
+then
+	recycle-edit-files "$BUFFER_NAME"
+elif [ "$TARGET" = "buffer" ];
+then
+	recycle-edit-buffer "$BUFFER_NAME"
+fi

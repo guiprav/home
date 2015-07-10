@@ -1,11 +1,17 @@
 #!/bin/sh
-FAVES_PATH=$HOME/.faves
-if [ -z "$1" ];
+if [ "$#" -eq 1 ];
 then
-    $EDITOR "$FAVES_PATH"
-elif [ "$1" = "-p" ];
+	FAVE_CONTEXT="_"
+	FILE_PATH="$1"
+elif [ "$#" -eq 2 ];
 then
-    cat "$FAVES_PATH"
+	FAVE_CONTEXT="$1"
+	FILE_PATH="$2"
 else
-    realpath "$1" >>$FAVES_PATH
+	echo "Bad arguments." >/dev/stderr
+	echo "Usage: fave [context] file-path"
+	exit 1
 fi
+BUFFER_NAME="fave-$FAVE_CONTEXT"
+realpath "$FILE_PATH" |grab-append "$BUFFER_NAME" 1>/dev/null
+recycle "$BUFFER_NAME"
