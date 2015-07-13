@@ -1,0 +1,2 @@
+#!/bin/sh
+chmod 600 ~/.passes && scp ~/.passes malkuth.n2.gs:.

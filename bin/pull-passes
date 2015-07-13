@@ -1,0 +1,2 @@
+#!/bin/sh
+scp malkuth.n2.gs:.passes ~/ && chmod 600 ~/.passes
