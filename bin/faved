@@ -1,6 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 TARGET="selected-files"
-if [ "$1" = "-b" ];
+if [ "$1" = "-l" ];
+then
+	recycle-edit-files faved-_LAST
+	exit $?
+elif [ "$1" = "-b" ];
 then
 	TARGET="buffer"
 	shift
@@ -9,15 +14,16 @@ then
 	TARGET="all-files"
 	shift
 fi
-FAVE_CONTEXT="$2"
-if [ -z "$FAVE_CONTEXT" ];
+FAVE_CONTEXT="$1"
+if [ "$FAVE_CONTEXT" = "" ];
 then
 	FAVE_CONTEXT="_"
 fi
 BUFFER_NAME="fave-$FAVE_CONTEXT"
 if [ "$TARGET" = "selected-files" ];
 then
-	recycle-find-and-edit-files "$BUFFER_NAME"
+	recycle-find-files "$BUFFER_NAME" |grab faved-_LAST
+	recycle-edit-files faved-_LAST
 elif [ "$TARGET" = "all-files" ];
 then
 	recycle-edit-files "$BUFFER_NAME"

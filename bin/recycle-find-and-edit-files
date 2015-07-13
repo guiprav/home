@@ -1,6 +1,0 @@
-#!/bin/sh
-FOUND="$(recycle $1 |strip-color-codes |fzf -m)"
-if [ -n "$FOUND" ];
-then
-	$EDITOR $FOUND
-fi

@@ -6,12 +6,12 @@ then
 elif [ "$#" -eq 1 ];
 then
 	ACTION="add"
-	FILE_PATH="$1"
-elif [ "$#" -eq 2 ];
+	FILE_PATHS="$1"
+elif [ "$#" -ge 2 ];
 then
 	ACTION="add"
-	FAVE_CONTEXT="$1"
-	FILE_PATH="$2"
+	FAVE_CONTEXT="$1"; shift
+	FILE_PATHS="$@"
 else
 	echo "Bad arguments." >/dev/stderr
 	echo "Usage:"
@@ -26,7 +26,10 @@ fi
 BUFFER_NAME="fave-$FAVE_CONTEXT"
 if [ "$ACTION" = "add" ];
 then
-	realpath "$FILE_PATH" |grab-append "$BUFFER_NAME" 1>/dev/null
+	for FILE_PATH in "$FILE_PATHS";
+	do
+		realpath "$FILE_PATH" |grab-append "$BUFFER_NAME" 1>/dev/null
+	done
 	recycle "$BUFFER_NAME"
 elif [ "$ACTION" = "print" ];
 then
