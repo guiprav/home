@@ -1,2 +1,2 @@
 #!/bin/sh
-chmod 600 ~/.passes && scp ~/.passes malkuth.n2.gs:.
+chmod 600 ~/.passes && scp ~/.passes n2liquid@malkuth.n2.gs:.
