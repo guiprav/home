@@ -25,3 +25,8 @@ inoremap <right> <nop>
 set relativenumber
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
+
+let s:host_vimrc = hostname() . '.vimrc'
+if filereadable(s:host_vimrc)
+    execute 'source ' . s:host_vimrc
+endif
