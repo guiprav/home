@@ -6,6 +6,7 @@ au BufRead,BufNewFile *.pegjs set filetype=pegjs
 au BufRead,BufNew *.md set filetype=markdown
 set smartindent
 set tabstop=4
+set expandtab
 set shiftwidth=4
 let g:molokai_original = 1
 let g:rehash256 = 1
