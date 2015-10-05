@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+if [ -z "$TEAMKEY" ];
+then
+    echo "Missing TEAMKEY." >/dev/stderr
+    exit 1
+fi
+
+if [ "$#" -eq 0 ];
+then
+    FILE=-
+else
+    FILE="$1"
+fi
+
+result=$(curl -F "file=@$FILE" "http://teamfiles.n2.gs/upload/$TEAMKEY")
+
+echo "http://teamfiles.n2.gs/$result"
