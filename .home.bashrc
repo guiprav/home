@@ -29,3 +29,6 @@ function mkcd() {
 function bin() {
 	nearest "bin/$1" -e ${@:2}
 }
+function nexec() {
+    nearest "$1" -e $(@:2)
+}
