@@ -1,6 +1,2 @@
 #!/bin/sh
-FILES="$(recycle $1)"
-if [ -n "$FILES" ];
-then
-	$EDITOR $FILES
-fi
+recycle "$1" |xargs -d "\n" bash -c "</dev/tty $EDITOR "'"$@"' ignore
