@@ -8,13 +8,14 @@ then
     exit 1
 fi
 
-if [ "$#" -eq 0 ];
+FILE_PATH="$1"
+
+if [ ! -t 0 ];
 then
-    FILE=-
-else
-    FILE="$1"
+    FILE_FIELD_TAIL=";filename=stdin.$FILE_PATH"
+    FILE_PATH=-
 fi
 
-result=$(curl -F "file=@$FILE" "http://teamfiles.n2.gs/upload/$TEAMKEY")
+result=$(curl -F "file=@$FILE_PATH$FILE_FIELD_TAIL" "http://teamfiles.n2.gs/upload/$TEAMKEY")
 
 echo "http://teamfiles.n2.gs/$result"
