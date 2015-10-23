@@ -1,0 +1,7 @@
+#!/bin/sh
+invocation_pwd_len="$(expr length "$(pwd)/")"
+
+cd "$(nearest .git)/.."
+
+git diff --name-only |uniq |xargs -n 1 readlink -f \
+    |sed -r "s/^.{$invocation_pwd_len}//"
