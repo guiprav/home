@@ -1,0 +1,12 @@
+set editing-mode vi
+$if mode=vi
+    set keymap vi-command
+        Control-l: clear-screen
+    set keymap vi-insert
+        Control-l: clear-screen
+        Control-p: shell-expand-line
+        Control-b: glob-expand-word
+$endif
+$if Bash
+  Space: magic-space
+$endif
