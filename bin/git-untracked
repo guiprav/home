@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+invocation_pwd="$PWD"
+
+cd "$(nearest .git)/.."
+
+for file in $(git ls-files --others --exclude-standard |uniq);
+do
+    relpath "$file" "$invocation_pwd"
+done
