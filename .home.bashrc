@@ -33,3 +33,4 @@ function nexec() {
     nearest "$1" -e $(@:2)
 }
 source "$(dirname "${BASH_SOURCE[0]}")/repeat.bashrc"
+source "$(dirname "${BASH_SOURCE[0]}")/pr.bashrc"
