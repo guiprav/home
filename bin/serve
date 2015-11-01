@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+if [ "$1" = "-p" ];
+then
+    port="$2"; shift 2
+fi
+
+if [ "$#" = "0" ];
+then
+    paths="."
+else
+    paths=$@
+fi
+
+temp_dir_path="$(mktemp -d)"
+
+trap '
+    cd /tmp
+    rm -rf "'"$temp_dir_path"'"
+' SIGINT SIGTERM EXIT
+
+for path in $paths;
+do
+    ln -s "$(readlink -f "$path")" "$temp_dir_path"
+done
+
+cd "$temp_dir_path"
+
+python -m SimpleHTTPServer "$port"
