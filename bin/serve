@@ -1,10 +1,34 @@
 #!/bin/bash
 set -e
 
-if [ "$1" = "-p" ];
-then
-    port="$2"; shift 2
-fi
+script_dir="$(dirname "${BASH_SOURCE[0]}")"
+
+node_modules_dir="$script_dir/../node_modules"
+
+http_server_bin="$node_modules_dir/http-server/bin/http-server"
+
+while true;
+do
+    case "$1" in
+        -p)
+            server_options+=" -p $(printf %q "$2")"; shift
+            ;;
+
+        -o)
+            server_options+=" -o"
+            ;;
+
+        -s)
+            server_options+=" -s"
+            ;;
+
+        *)
+            break
+            ;;
+    esac
+
+    shift
+done
 
 if [ "$#" = "0" ];
 then
@@ -27,4 +51,4 @@ done
 
 cd "$temp_dir_path"
 
-python -m SimpleHTTPServer "$port"
+"$http_server_bin" . $server_options

@@ -11,6 +11,7 @@
   },
   "homepage": "https://github.com/n2liquid/home",
   "dependencies": {
+    "http-server": "^0.8.5",
     "moment": "^2.9.0"
   }
 }
