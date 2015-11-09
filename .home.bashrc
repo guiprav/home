@@ -21,7 +21,7 @@ alias cless="less -R"
 alias annex="git annex"
 export EDITOR=vim
 function rd() {
-	cd $(recycle $1)
+	cd "$(recycle $1)"
 }
 function mkcd() {
 	mkdir -p "$@" && cd "$@"
