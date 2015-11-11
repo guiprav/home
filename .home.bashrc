@@ -35,3 +35,4 @@ function nexec() {
 source "$(dirname "${BASH_SOURCE[0]}")/repeat.bashrc"
 source "$(dirname "${BASH_SOURCE[0]}")/chronic.bashrc"
 source "$(dirname "${BASH_SOURCE[0]}")/pr.bashrc"
+source "$(dirname "${BASH_SOURCE[0]}")/mr.bashrc"
