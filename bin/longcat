@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    "-h"|"--help")
+        echo Long cat is long.
+        exit
+        ;;
+esac
+
+for file in $@;
+do
+    if [ "$file" = "-" ];
+    then
+        file=/dev/stdin
+    fi
+
+    tail -c +1 -f "$file"
+done
+
+if [ "$#" -eq 0 ];
+then
+    tail -c +1 -f
+fi
