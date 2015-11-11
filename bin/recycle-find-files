@@ -1,2 +1,2 @@
 #!/bin/sh
-recycle "$1" |strip-color-codes |fzf -m
+recycle "$1" |bw |fzf -m
