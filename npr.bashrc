@@ -1,5 +1,5 @@
 #!/bin/sh
-function mr() {(
+function npr() {(
     cd "$(dirname "$(nearest package.json)")" || return
 
     if [ -x "./$1" ];

@@ -1,5 +1,5 @@
 #!/bin/sh
-function pr() {(
+function gpr() {(
     cd "$(nearest .git)/.." || return
 
     if [ -x "./$1" ];
