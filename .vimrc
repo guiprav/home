@@ -30,6 +30,7 @@ inoremap <right> <nop>
 set relativenumber
 autocmd InsertEnter * :set norelativenumber | set number
 autocmd InsertLeave * :set relativenumber
+autocmd VimLeave * call system("echo -n $'" . escape(getreg(), "'") . "' | xclip -selection clipboard")
 
 let s:host_vimrc = hostname() . '.vimrc'
 if filereadable(s:host_vimrc)
