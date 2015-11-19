@@ -49,4 +49,4 @@ done
 
 cd "$temp_dir_path"
 
-"$http_server_bin" . $server_options
+chronic "$http_server_bin" . $server_options
