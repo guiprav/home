@@ -34,5 +34,6 @@ function nexec() {
 }
 source "$(dirname "${BASH_SOURCE[0]}")/repeat.bashrc"
 source "$(dirname "${BASH_SOURCE[0]}")/chronic.bashrc"
+source "$(dirname "${BASH_SOURCE[0]}")/faketty.bashrc"
 source "$(dirname "${BASH_SOURCE[0]}")/gpr.bashrc"
 source "$(dirname "${BASH_SOURCE[0]}")/npr.bashrc"
