@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+if [ "$1" ];
+then
+    notepath="$1"
+else
+    notepath="_"
+fi
+
+filepath="$(printf %q "$HOME/notes/$notepath.md")"
+dirpath="$(dirname "$filepath")"
+
+mkdir -p "$dirpath"
+
+"$EDITOR" "$filepath"

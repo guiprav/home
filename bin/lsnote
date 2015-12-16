@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+dirpath="$HOME/notes/$1"
+
+if [ ! -d "$dirpath" ];
+then
+    exit
+fi
+
+ls -R "$dirpath"
