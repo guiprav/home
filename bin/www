@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+if [ "$WEB_BROWSER" = "" ];
+then
+    echo Missing WEB_BROWSER. >&2
+    exit -1
+fi
+
+guistart "$WEB_BROWSER" "$@"
