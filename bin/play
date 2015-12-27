@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+if [ "$MEDIA_PLAYER" = "" ];
+then
+    echo Missing MEDIA_PLAYER. >&2
+    exit -1
+fi
+
+guistart "$MEDIA_PLAYER" "$@"
