@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+'use strict';
+
+let readTextFileSync = require('read-text-file-sync');
+
+let exprString = readTextFileSync('/dev/stdin');
+
+let exprFn = new Function('return (' + exprString + ');');
+
+console.log(JSON.stringify(exprFn()));

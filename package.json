@@ -12,6 +12,7 @@
   "homepage": "https://github.com/n2liquid/home",
   "dependencies": {
     "http-server": "^0.8.5",
-    "moment": "^2.9.0"
+    "moment": "^2.9.0",
+    "read-text-file-sync": "github:n2liquid/read-text-file-sync"
   }
 }
