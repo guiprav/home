@@ -16,6 +16,6 @@ then
     FILE_PATH=-
 fi
 
-result=$(curl -F "file=@$FILE_PATH$FILE_FIELD_TAIL" "http://teamfiles.n2.gs/upload/$TEAMKEY")
+result=$(curl -H Expect: -F "file=@$FILE_PATH$FILE_FIELD_TAIL" "http://teamfiles.n2.gs/upload/$TEAMKEY")
 
 echo "http://teamfiles.n2.gs/$result"
