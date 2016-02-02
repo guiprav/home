@@ -2,9 +2,14 @@
 
 set -e
 
-if [ -z "$TEAMKEY" ];
+if [ -z "$TEAMFILES_SERVER" ];
 then
-    echo "Missing TEAMKEY." >/dev/stderr
+    TEAMFILES_SERVER="http://teamfiles.n2.gs"
+fi
+
+if [ -z "$TEAMFILES_KEY" ];
+then
+    echo "Missing TEAMFILES_KEY." >/dev/stderr
     exit 1
 fi
 
@@ -16,6 +21,5 @@ then
     FILE_PATH=-
 fi
 
-result=$(curl -H Expect: -F "file=@$FILE_PATH$FILE_FIELD_TAIL" "http://teamfiles.n2.gs/upload/$TEAMKEY")
-
-echo "http://teamfiles.n2.gs/$result"
+curl -F "file=@$FILE_PATH$FILE_FIELD_TAIL" \
+    "$TEAMFILES_SERVER/upload/$TEAMFILES_KEY"
