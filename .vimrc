@@ -5,16 +5,14 @@ au BufNewFile,BufRead *.hbs set filetype=html
 au BufRead,BufNewFile *.pegjs set filetype=pegjs
 au BufRead,BufNew *.md set filetype=markdown
 filetype plugin indent off
-set tabstop=4
+set tabstop=2
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set autoindent
 set ignorecase
 let g:molokai_original = 1
 let g:rehash256 = 1
 colorscheme molokai
-nnoremap <F9> :!%:p<CR>
-nnoremap <F8> :!make<CR>
 nnoremap -d "_d
 vnoremap -d "_d
 noremap <F12> <Esc>:syntax sync fromstart<CR>
@@ -30,9 +28,3 @@ inoremap <right> <nop>
 set relativenumber
 autocmd InsertEnter * :set norelativenumber | set number
 autocmd InsertLeave * :set relativenumber
-autocmd VimLeave * call system("echo -n $'" . escape(getreg(), "'") . "' | xclip -selection clipboard")
-
-let s:host_vimrc = hostname() . '.vimrc'
-if filereadable(s:host_vimrc)
-    execute 'source ' . s:host_vimrc
-endif
